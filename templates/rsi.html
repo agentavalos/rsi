@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RSI Accuracy Calculator</title>
+</head>
+<body>
+	<h1>RSI Accuracy Calculator</h1>
+	<p>Select a cryptocurrency and time period to calculate the accuracy of RSI:</p>
+	<form method="post" action="">
+		{% csrf_token %}
+		<label for="crypto">Cryptocurrency:</label>
+		<select name="crypto" id="crypto">
+			<option value="BTC-USD">Bitcoin (BTC)</option>
+			<option value="ETH-USD">Ethereum (ETH)</option>
+			<option value="LTC-USD">Litecoin (LTC)</option>
+		</select><br><br>
+		<label for="start_date">Start Date:</label>
+		<input type="date" id="start_date" name="start_date" required><br><br>
+		<label for="end_date">End Date:</label>
+		<input type="date" id="end_date" name="end_date" required><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	{% if accuracy %}
+		<p>Accuracy of RSI for {{ crypto }} from {{ start_date }} to {{ end_date }}: {{ accuracy }}%</p>
+	{% endif %}
+</body>
+</html>
